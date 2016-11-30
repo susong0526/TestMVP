@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">TestMVP</string>
+    <string name="loading">请稍等\.\.\.</string>
+</resources>

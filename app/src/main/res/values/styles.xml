@@ -1,0 +1,45 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <!--  Toolbar背景颜色   -->
+        <item name="colorPrimary">@color/theme_color</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <!--  应用中的字体默认颜色  -->
+        <item name="android:textColor">@color/black</item>
+        <!--  Toolbar的标题颜色值  -->
+        <item name="android:textColorPrimary">@color/toolbar_title_color</item>
+        <!--  Toolbar的选项菜单的颜色值  -->
+        <item name="actionMenuTextColor">@color/toolbar_menu_color</item>
+        <item name="editTextColor">@color/black</item>
+        <item name="android:textColorHint">@color/devider</item>
+        <!--<item name="editTextBackground">@drawable/edit_text_material</item>-->
+        <!--<item name="actionMenuTextAppearance">@style/ActionMenuStyle</item>-->
+        <!--<item name="toolbarNavigationButtonStyle">@style/ToolbarNoNavigationStyle</item>-->
+        <!-- 以下属性用于解决闪屏页白屏问题 -->
+        <!--<item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>-->
+        <!--<item name="android:windowIsTranslucent">true</item>-->
+        <!--<item name="android:background">@android:color/transparent</item>-->
+    </style>
+
+    <style name="custom_dlg" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.6</item>
+    </style>
+
+    <style name="ProgressBarSmall2" parent="@android:style/Widget.ProgressBar.Small">
+        <item name="android:indeterminateDrawable">@drawable/ptr_progressbar</item>
+        <item name="android:minWidth">30dip</item>
+        <item name="android:minHeight">30dip</item>
+        <item name="android:indeterminateOnly">true</item>
+        <item name="android:indeterminateBehavior">repeat</item>
+        <item name="android:indeterminateDuration">300</item>
+    </style>
+</resources>
