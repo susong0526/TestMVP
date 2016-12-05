@@ -6,7 +6,7 @@ import android.util.LruCache;
 /**
  * 内存缓存
  */
-public class MemoryCache extends PPSHCache {
+public class MemoryCache extends Cache {
     private static MemoryCache instance;
     private LruCache<String, Object> mMemoryCache;
 

@@ -6,7 +6,7 @@ import com.example.susong.testmvp.business.login.view.LoginView;
 import com.example.susong.testmvp.database.Repository;
 import com.example.susong.testmvp.business.login.model.UserRepository;
 import com.example.susong.testmvp.business.login.model.UserSpecification;
-import com.example.susong.testmvp.entity.dto.User;
+import com.example.susong.testmvp.entity.po.User;
 import com.example.susong.testmvp.framework.Presenter;
 import com.example.susong.testmvp.framework.View;
 

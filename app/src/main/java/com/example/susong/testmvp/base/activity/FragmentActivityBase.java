@@ -12,10 +12,9 @@ import android.support.v4.app.FragmentTransaction;
 import android.text.TextUtils;
 import android.view.View;
 
-import com.jlhm.personal.R;
-import com.jlhm.personal.fragment.FragmentBaseCompat;
-import com.jlhm.personal.thirdparty.bugly.CrashReporterUtils;
-import com.jlhm.personal.ui.FragmentBase;
+import com.example.susong.testmvp.R;
+import com.example.susong.testmvp.base.fragment.FragmentBaseCompat;
+import com.example.susong.testmvp.util.CrashReporterUtils;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -362,7 +361,7 @@ public abstract class FragmentActivityBase extends ActivityBaseCompat {
      * @param enterAnim 进入动画
      * @param exitAnim 退出动画
      */
-    public void switchTo(@NonNull Class<? extends FragmentBase> target, FragmentBase fragmentBaseCompat, @AnimRes int enterAnim, @AnimRes int exitAnim) {
+    public void switchTo(@NonNull Class<? extends FragmentBaseCompat> target, FragmentBaseCompat fragmentBaseCompat, @AnimRes int enterAnim, @AnimRes int exitAnim) {
         if (target.getName().equals(mCurrFragmentTag)) return;
         FragmentTransaction transaction = mFragmentManager.beginTransaction();
         transaction.setCustomAnimations(enterAnim, exitAnim);
@@ -371,9 +370,9 @@ public abstract class FragmentActivityBase extends ActivityBaseCompat {
             currFr = (FragmentBaseCompat) mFragmentManager.findFragmentByTag(mCurrFragmentTag);
             if (null != currFr) transaction.hide(currFr);
         }
-        FragmentBase targetFr = fragmentBaseCompat;
+        FragmentBaseCompat targetFr = fragmentBaseCompat;
         if(fragmentBaseCompat==null){
-            targetFr = (FragmentBase) mFragmentManager.findFragmentByTag(target.getName());
+            targetFr = (FragmentBaseCompat) mFragmentManager.findFragmentByTag(target.getName());
         }
         if (null != targetFr) {
             transaction.show(targetFr);
@@ -396,7 +395,7 @@ public abstract class FragmentActivityBase extends ActivityBaseCompat {
         switchTo(target, 0, 0);
     }
 
-    public void switchTo(@NonNull Class<? extends FragmentBase> target, FragmentBase fragmentBaseCompat) {
+    public void switchTo(@NonNull Class<? extends FragmentBaseCompat> target, FragmentBaseCompat fragmentBaseCompat) {
         switchTo(target, fragmentBaseCompat, 0, 0);
     }
 

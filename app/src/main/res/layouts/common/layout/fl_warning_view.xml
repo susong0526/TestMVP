@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/warningView"
+    android:layout_width="match_parent"
+    android:layout_height="56dp"
+    android:background="@color/rc_notice_warning"
+    android:orientation="horizontal"
+    android:padding="10dp">
+
+    <ImageView
+        android:id="@+id/warningIconView"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:src="@drawable/image_selector_notice_wraning" />
+
+    <TextView
+        android:id="@+id/warningMessageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:text="当前网络不可用"
+        android:textColor="@color/rc_notice_text"
+        android:textSize="15sp" />
+</LinearLayout>
+

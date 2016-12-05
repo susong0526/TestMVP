@@ -24,16 +24,16 @@ import android.widget.BaseAdapter;
 import android.widget.GridView;
 import android.widget.ImageView;
 
-import com.jlhm.personal.Application;
-import com.jlhm.personal.R;
-import com.jlhm.personal.cache.MemoryCache;
-import com.jlhm.personal.constant.PPSH;
-import com.jlhm.personal.model.ImageVO;
-import com.jlhm.personal.thirdparty.bugly.CrashReporterUtils;
-import com.jlhm.personal.ui.ActivityBase;
-import com.jlhm.personal.utils.DensityUtil;
-import com.jlhm.personal.utils.FileUtils;
-import com.jlhm.personal.utils.UniversualImageLoaderUtils;
+import com.example.susong.testmvp.C;
+import com.example.susong.testmvp.R;
+import com.example.susong.testmvp.base.A;
+import com.example.susong.testmvp.base.activity.ActivityBaseCompat;
+import com.example.susong.testmvp.cache.MemoryCache;
+import com.example.susong.testmvp.entity.domain.ImageVO;
+import com.example.susong.testmvp.util.CrashReporterUtils;
+import com.example.susong.testmvp.util.DensityUtil;
+import com.example.susong.testmvp.util.FileUtils;
+import com.example.susong.testmvp.util.UniversualImageLoaderUtils;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import java.io.File;
@@ -45,7 +45,7 @@ import java.util.ArrayList;
  *
  * @author scott
  */
-public class ImageSelector extends ActivityBase implements AdapterView.OnItemClickListener {
+public class ImageSelector extends ActivityBaseCompat implements AdapterView.OnItemClickListener {
     private GridView mGridView;
     // 每行展示列数
     private final int NUMBER_COLUMNS = 3;
@@ -95,7 +95,7 @@ public class ImageSelector extends ActivityBase implements AdapterView.OnItemCli
                 }
                 case MESSAGE_WHAT_READ_FROM_PROVIDER: {
                     final ArrayList<ImageVO> images = readFromProvider();
-                    MemoryCache.sharedInstance().put(PPSH.KEY_GALLERY_IMAGES, images);
+                    MemoryCache.sharedInstance().put(C.KEY_GALLERY_IMAGES, images);
                     runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
@@ -118,6 +118,22 @@ public class ImageSelector extends ActivityBase implements AdapterView.OnItemCli
         }
     }
 
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        initialize();
+        initView();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (null != mImageLooper) {
+            mImageLooper.quit();
+            mImageLooper = null;
+        }
+    }
+
     // 图片数据初始化
     public void initialize() {
         HandlerThread handlerThread = new HandlerThread("Image Task");
@@ -127,30 +143,22 @@ public class ImageSelector extends ActivityBase implements AdapterView.OnItemCli
         mImageHandler.sendEmptyMessage(MESSAGE_WHAT_DELETE_TEMP_IMG);
     }
 
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-//        sendBroadcast(new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.parse("file://" + Environment.getExternalStorageDirectory())));
-        setToolbarMiddleTitle(R.string.selecte_image);
-        initialize();
-        initView();
-    }
-
     private void initView() {
         if (null == mGridView) {
             mGridView = new GridView(this);
         }
-        addContentView(mGridView);
         mGridView.setNumColumns(NUMBER_COLUMNS);
         mGridView.setVerticalSpacing(DensityUtil.dip2px(IMAGE_SPACE));
         mGridView.setHorizontalSpacing(DensityUtil.dip2px(IMAGE_SPACE));
         mGridView.setOnItemClickListener(this);
+        setContentView(mGridView);
+        setTitle(R.string.selecte_image);
         loadImages();
     }
 
     // 加载系统图片到缩略图
     private void loadImages() {
-        ArrayList<ImageVO> images = (ArrayList<ImageVO>) MemoryCache.sharedInstance().get(PPSH.KEY_GALLERY_IMAGES);
+        ArrayList<ImageVO> images = (ArrayList<ImageVO>) MemoryCache.sharedInstance().get(C.KEY_GALLERY_IMAGES);
         if (null == images) {
             mImageHandler.sendEmptyMessage(MESSAGE_WHAT_READ_FROM_PROVIDER);
         } else {
@@ -203,7 +211,7 @@ public class ImageSelector extends ActivityBase implements AdapterView.OnItemCli
         if (null != cursor) {
             cursor.close();
         }
-        MemoryCache.sharedInstance().put(PPSH.KEY_GALLERY_IMAGES, images);
+        MemoryCache.sharedInstance().put(C.KEY_GALLERY_IMAGES, images);
         return images;
     }
 
@@ -282,7 +290,7 @@ public class ImageSelector extends ActivityBase implements AdapterView.OnItemCli
 //        imageView.setClickable(true);
         int padding = DensityUtil.dip2px(5);
         imageView.setPadding(padding, padding, padding, padding);
-        DisplayMetrics dm = Application.instance.getResources().getDisplayMetrics();
+        DisplayMetrics dm = A.instance.getResources().getDisplayMetrics();
         int width = dm.widthPixels;
         GridView.LayoutParams lp = new GridView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, (width - (NUMBER_COLUMNS + 1) * IMAGE_SPACE) / NUMBER_COLUMNS);
         imageView.setLayoutParams(lp);
@@ -318,7 +326,7 @@ public class ImageSelector extends ActivityBase implements AdapterView.OnItemCli
             }
             ImageVO img = images.get(position);
             if (0 == position) {
-                ((ImageView) convertView).setImageResource(R.drawable.rc_ic_camera);
+                ((ImageView) convertView).setImageResource(R.drawable.image_selector_camera);
             } else {
                 loadThumbnail(img, (ImageView) convertView);
             }
@@ -329,7 +337,7 @@ public class ImageSelector extends ActivityBase implements AdapterView.OnItemCli
         private void loadThumbnail(ImageVO img, ImageView imageView) {
             String path = img.getPath();
             if (!TextUtils.isEmpty(path)) {
-                DisplayMetrics dm = Application.instance.getResources().getDisplayMetrics();
+                DisplayMetrics dm = A.instance.getResources().getDisplayMetrics();
                 int width = dm.widthPixels;
                 float sizeMultiplier = 0.1f;
                 int targetWidth = (width - (NUMBER_COLUMNS + 1) * IMAGE_SPACE) / NUMBER_COLUMNS;
@@ -384,15 +392,6 @@ public class ImageSelector extends ActivityBase implements AdapterView.OnItemCli
                     finish();
                 }
             }
-        }
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (null != mImageLooper) {
-            mImageLooper.quit();
-            mImageLooper = null;
         }
     }
 

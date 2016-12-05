@@ -7,5 +7,5 @@ public interface Presenter<V extends View> {
 
     void onDestroyed();
 
-    void setView(View view);
+    void setView(V view);
 }

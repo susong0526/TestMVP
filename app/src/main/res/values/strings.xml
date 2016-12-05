@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">TestMVP</string>
     <string name="loading">请稍等\.\.\.</string>
+    <string name="server_busy_retry_later">服务器繁忙,请稍后再试</string>
+    <string name="tip_network_time_out">网络请求超时</string>
+    <string name="tip_network_error">网络错误,请检查当前网络配置</string>
+    <string name="selecte_image">选择图片</string>
 </resources>

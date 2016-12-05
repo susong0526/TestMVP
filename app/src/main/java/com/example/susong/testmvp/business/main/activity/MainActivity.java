@@ -12,18 +12,18 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.example.susong.testmvp.R;
+import com.example.susong.testmvp.base.activity.ActivityBaseCompat;
 import com.example.susong.testmvp.business.main.presenter.MainPresenter;
 import com.example.susong.testmvp.business.main.presenter.MainPresenterFactory;
 import com.example.susong.testmvp.business.main.view.MainView;
-import com.example.susong.testmvp.entity.dto.User;
+import com.example.susong.testmvp.entity.po.User;
 import com.example.susong.testmvp.framework.PresenterLoader;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<MainPresenter>, MainView {
+public class MainActivity extends ActivityBaseCompat implements LoaderManager.LoaderCallbacks<MainPresenter>, MainView {
     private MainPresenter mMainPresenter;
     private ListView mListView;
-    private ProgressDialog mProgressDialog;
     private UserAdapter mAdapter;
 
     @Override
@@ -45,19 +45,17 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public void showProgress() {
-        if (null == mProgressDialog) {
-            mProgressDialog = new ProgressDialog(this);
-        }
-        if (!mProgressDialog.isShowing()) {
-            mProgressDialog.show();
-        }
+        showLoadingDialog();
     }
 
     @Override
     public void hideProgress() {
-        if (null != mProgressDialog && mProgressDialog.isShowing()) {
-            mProgressDialog.dismiss();
-        }
+        dissmissLoadingDialog();
+    }
+
+    @Override
+    public void showError(String url, int code, String message) {
+        onRequestError(url, code, message);
     }
 
     @Override

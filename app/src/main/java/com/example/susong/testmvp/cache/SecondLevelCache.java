@@ -3,7 +3,7 @@ package com.example.susong.testmvp.cache;
 /**
  * 二级缓存
  */
-public class SecondLevelCache extends PPSHCache {
+public class SecondLevelCache extends Cache {
     private static SecondLevelCache instance;
 
     private SecondLevelCache() {

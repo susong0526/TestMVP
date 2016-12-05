@@ -8,5 +8,5 @@ public interface Editor {
 
     void commit();
 
-    void setCache(PPSHCache cache);
+    void setCache(Cache cache);
 }

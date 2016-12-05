@@ -7,7 +7,7 @@ import java.util.HashMap;
 /**
  * 文件缓存
  */
-public abstract class FileCache extends PPSHCache {
+public abstract class FileCache extends Cache {
     private static FileCache instance;
     protected HashMap<String, Object> map;
     private FileEditor mEditor;

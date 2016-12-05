@@ -21,7 +21,7 @@ public class FileEditor implements Editor {
     }
 
     @Override
-    public void setCache(PPSHCache cache) {
+    public void setCache(Cache cache) {
         mCache = (FileCache) cache;
     }
 }

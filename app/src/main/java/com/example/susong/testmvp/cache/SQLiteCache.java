@@ -16,7 +16,7 @@ import java.util.List;
 /**
  * 使用SQLite数据库作为缓存工具
  */
-public class SQLiteCache extends PPSHCache {
+public class SQLiteCache extends Cache {
     private static SQLiteCache instance;
     private SQLiteOpenHelper mSQLiteOpenHelper;
 

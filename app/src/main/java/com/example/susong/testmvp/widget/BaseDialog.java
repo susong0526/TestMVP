@@ -7,7 +7,7 @@ import com.example.susong.testmvp.R;
 
 public class BaseDialog extends Dialog {
     public BaseDialog(Context context) {
-        super(context, R.style.custom_dlg);
+        super(context, R.style.CustomDialog);
     }
 
     public BaseDialog(Context context, int theme) {

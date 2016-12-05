@@ -8,7 +8,7 @@ import com.example.susong.testmvp.base.A;
 import com.example.susong.testmvp.util.SqliteOpenHelper;
 import com.example.susong.testmvp.database.Repository;
 import com.example.susong.testmvp.database.Specification;
-import com.example.susong.testmvp.entity.dto.User;
+import com.example.susong.testmvp.entity.po.User;
 
 import java.util.ArrayList;
 import java.util.List;

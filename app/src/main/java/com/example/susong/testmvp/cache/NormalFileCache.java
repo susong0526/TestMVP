@@ -2,6 +2,10 @@ package com.example.susong.testmvp.cache;
 
 import android.text.TextUtils;
 
+import com.example.susong.testmvp.C;
+import com.example.susong.testmvp.util.FileUtils;
+import com.example.susong.testmvp.util.SpUtil;
+
 import java.io.File;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -13,11 +17,11 @@ import java.util.Set;
 public class NormalFileCache extends FileCache {
     @Override
     public String getAbsolutePath() {
-        long userId = SpUtil.getLong(PPSH.KEY_USER_ID);
+        long userId = SpUtil.getLong(C.KEY_USER_ID);
         if (userId > 0) {
-            return PPSH.PATH_FOR_NORMAL_CACHE + File.separator + userId + File.separator + "ppsh.cache";
+            return C.PATH_FOR_NORMAL_CACHE + File.separator + userId + File.separator + "ppsh.cache";
         }
-        return PPSH.PATH_FOR_NORMAL_CACHE + File.separator + "ppsh.cache";
+        return C.PATH_FOR_NORMAL_CACHE + File.separator + "ppsh.cache";
     }
 
     @Override

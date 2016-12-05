@@ -22,15 +22,24 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
+import com.example.susong.testmvp.R;
 import com.example.susong.testmvp.base.activity.delegate.ActivityDelegate;
 import com.example.susong.testmvp.base.activity.manager.ActivityManager;
+import com.example.susong.testmvp.business.login.activity.LoginActivity;
+import com.example.susong.testmvp.cache.MemoryCache;
+import com.example.susong.testmvp.entity.domain.eventbus.NetworkChangeEvent;
+import com.example.susong.testmvp.entity.dto.response.ResObj;
 import com.example.susong.testmvp.http.HttpDataApi;
 import com.example.susong.testmvp.util.HandlerManager;
+import com.example.susong.testmvp.util.SessionUtil;
+import com.example.susong.testmvp.util.ToastUtil;
 import com.example.susong.testmvp.widget.AbsToolbar;
+import com.example.susong.testmvp.widget.DefaultToolbar;
 import com.example.susong.testmvp.widget.LoadingDialog;
 
 import org.apache.http.HttpStatus;
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 
@@ -407,11 +416,7 @@ public abstract class ActivityBaseCompat extends AppCompatActivity implements Ab
 
     @Override
     public void onRequestSuccess(String url, ResObj result, boolean isFrmCache) {
-        if (Constants.CODE_SUCCESS != result.getCode()
-                && Constants.MainPageUserShopType.NO_SHOP != result.getCode()
-                && Constants.MainPageUserShopType.EXIST_SHOP != result.getCode()) {
-            doRequestError(url, HttpStatus.SC_OK, result.getMsg());
-        }
+        doRequestError(url, HttpStatus.SC_OK, result.getMsg());
     }
 
     public void doRequestError(String url, int code, String message) {
@@ -427,15 +432,11 @@ public abstract class ActivityBaseCompat extends AppCompatActivity implements Ab
             // 会话过期错误码特殊处理
             if (ResObj.CODE_INVALID_TOKEN == code || ResObj.CODE_TOKEN_EXPIRED == code || ResObj.CODE_COMPLETE_INFO == code) {
                 SessionUtil.loginOut();
-                Intent intent = new Intent(this, ActivityLogin.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.putExtra(ActivityLogin.BEING_OPENED_FRAGMENT_ID, Constants.FRAGMENT_IDS.LOGIN);
+                Intent intent = new Intent(this, LoginActivity.class);
                 startActivity(intent);
             }
         } else {
             dissmissLoadingDialog();
-
             String msg = message;
             switch (code) {
                 case HttpDataApi.OnRequestCallback.CODE_NETWORK_TIME_OUT: {
@@ -469,9 +470,6 @@ public abstract class ActivityBaseCompat extends AppCompatActivity implements Ab
 
     /**
      * 如果不需要使用父类提示,请重写该方法,requestTag用于兼容HttpUtils类,新版请求请使用DataLoader
-     *
-     * @param url URL
-     * @return
      */
     protected boolean onNeedCallSuper(String url) {
         return true;
