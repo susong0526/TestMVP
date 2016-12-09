@@ -7,19 +7,19 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.susong.testmvp.R;
+import com.example.susong.testmvp.base.activity.ActivityBaseCompat;
 import com.example.susong.testmvp.business.login.presenter.LoginPresenter;
 import com.example.susong.testmvp.business.login.presenter.LoginPresneterFactory;
 import com.example.susong.testmvp.business.login.view.LoginView;
 import com.example.susong.testmvp.business.main.activity.MainActivity;
 import com.example.susong.testmvp.framework.PresenterLoader;
 
-public class LoginActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<LoginPresenter>, LoginView {
+public class LoginActivity extends ActivityBaseCompat implements LoaderManager.LoaderCallbacks<LoginPresenter>, LoginView {
 
     private LoginPresenter mPresenter;
     private final int LOADER_ID = 100;
@@ -96,6 +96,11 @@ public class LoginActivity extends AppCompatActivity implements LoaderManager.Lo
     @Override
     public void hideProgress() {
         if (null != mDialog && mDialog.isShowing()) mDialog.dismiss();
+    }
+
+    @Override
+    public void showError(String url, int code, String message) {
+        onRequestError(url, code, message);
     }
 
     @Override

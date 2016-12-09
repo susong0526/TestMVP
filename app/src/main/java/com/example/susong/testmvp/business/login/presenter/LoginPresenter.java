@@ -33,8 +33,8 @@ public class LoginPresenter implements Presenter<LoginView> {
     }
 
     @Override
-    public void setView(View view) {
-        mLoginView = (LoginView) view;
+    public void setView(LoginView view) {
+        mLoginView = view;
     }
 
     public void login(final String username, final String pwd) {

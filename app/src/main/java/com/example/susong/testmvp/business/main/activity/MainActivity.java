@@ -1,16 +1,15 @@
 package com.example.susong.testmvp.business.main.activity;
 
-import android.app.ProgressDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import com.example.susong.testmvp.R;
 import com.example.susong.testmvp.base.activity.ActivityBaseCompat;
 import com.example.susong.testmvp.business.main.presenter.MainPresenter;
