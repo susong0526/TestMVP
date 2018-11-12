@@ -5,26 +5,22 @@ import android.os.Handler;
 import android.os.HandlerThread;
 import android.os.Looper;
 import android.os.Message;
-import android.support.multidex.MultiDexApplication;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.WindowManager;
 
-import com.antfortune.freeline.FreelineCore;
 import com.example.susong.testmvp.C;
 import com.example.susong.testmvp.entity.domain.DeviceInfo;
 import com.example.susong.testmvp.util.CrashReporterUtils;
-import com.example.susong.testmvp.util.Log.LoggerTool;
 import com.example.susong.testmvp.util.UniversualImageLoaderUtils;
 import com.example.susong.testmvp.util.exception.IflytekException;
-import com.orhanobut.logger.Logger;
-import com.squareup.leakcanary.LeakCanary;
-import com.squareup.leakcanary.RefWatcher;
+
+import androidx.multidex.MultiDexApplication;
 
 public class A extends MultiDexApplication {
     public static A instance;
     private DeviceInfo.Size screenSize;
-    private RefWatcher refWatcher;
+//    private RefWatcher refWatcher;
 
     private final class InitHandler extends Handler {
         InitHandler(Looper looper) {
@@ -35,24 +31,27 @@ public class A extends MultiDexApplication {
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
             if (C.DEBUG) {
-                refWatcher = LeakCanary.install(A.this);
+//                refWatcher = LeakCanary.install(A.this);
             }
         }
     }
 
-    public A() {
-        instance = this;
-    }
+    //    public static RefWatcher getRefWatcher(Context context) {
+//        A application = (A) context.getApplicationContext();
+//        return application.refWatcher;
+//    }
 
-    public static RefWatcher getRefWatcher(Context context) {
-        A application = (A) context.getApplicationContext();
-        return application.refWatcher;
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        instance = this;
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        FreelineCore.init(this);
+//        FreelineCore.init(this);
         instance = this;
         UniversualImageLoaderUtils.initImageLoader(this);
         initBugly();
@@ -106,7 +105,7 @@ public class A extends MultiDexApplication {
     }
 
     private void initLogger() {
-        Logger.init("TESTMVP").methodCount(3).logTool(new LoggerTool());
+//        Logger.init("TESTMVP").methodCount(3).logTool(new LoggerTool());
     }
 
     /**

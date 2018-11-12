@@ -1,11 +1,12 @@
 package com.example.susong.testmvp.http;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.text.TextUtils;
 
 import java.io.Serializable;
 import java.util.HashMap;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 public class RegistConfig {
     public static void regist(HashMap<String, Object[]> url_object_table) {

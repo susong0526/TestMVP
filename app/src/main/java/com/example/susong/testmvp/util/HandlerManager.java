@@ -1,9 +1,10 @@
 package com.example.susong.testmvp.util;
 
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 
 import java.lang.ref.WeakReference;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * 可以避免内存泄露的Handler

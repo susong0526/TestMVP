@@ -39,7 +39,8 @@ public class SystemConfigUtils {
     }
 
     public static String getChannel() {
-        return String.valueOf(BuildConfig.channel);
+//        return String.valueOf(BuildConfig.channel);
+        return null;
     }
 
     public static int getVersionCode() {

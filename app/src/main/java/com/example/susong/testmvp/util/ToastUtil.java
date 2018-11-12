@@ -3,11 +3,12 @@ package com.example.susong.testmvp.util;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Handler;
-import android.support.v7.app.AlertDialog;
 import android.text.TextUtils;
 import android.widget.Toast;
 
 import com.example.susong.testmvp.base.A;
+
+import androidx.appcompat.app.AlertDialog;
 
 public class ToastUtil {
     private static ToastUtil mInstance;

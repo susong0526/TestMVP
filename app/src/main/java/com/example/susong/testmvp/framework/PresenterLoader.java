@@ -1,7 +1,8 @@
 package com.example.susong.testmvp.framework;
 
 import android.content.Context;
-import android.support.v4.content.Loader;
+
+import androidx.loader.content.Loader;
 
 public class PresenterLoader<T extends Presenter> extends Loader<T> {
     private final PresenterFactory<T> mPresenterFactory;

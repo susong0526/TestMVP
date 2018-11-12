@@ -9,8 +9,8 @@ import android.graphics.Matrix;
 import android.media.ExifInterface;
 import android.text.TextUtils;
 
-import com.jlhm.personal.utils.FileUtils;
-import com.jlhm.personal.utils.LogUtils;
+import com.example.susong.testmvp.util.FileUtils;
+import com.example.susong.testmvp.util.LogUtils;
 import com.orhanobut.logger.Logger;
 
 import java.io.BufferedOutputStream;

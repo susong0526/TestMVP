@@ -2,8 +2,6 @@ package com.example.susong.testmvp.business.main.activity;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.LoaderManager;
-import android.support.v4.content.Loader;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -18,7 +16,13 @@ import com.example.susong.testmvp.business.main.view.MainView;
 import com.example.susong.testmvp.entity.po.User;
 import com.example.susong.testmvp.framework.PresenterLoader;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
+
+import androidx.loader.app.LoaderManager;
+import androidx.loader.content.Loader;
 
 public class MainActivity extends ActivityBaseCompat implements LoaderManager.LoaderCallbacks<MainPresenter>, MainView {
     private MainPresenter mMainPresenter;
@@ -29,8 +33,11 @@ public class MainActivity extends ActivityBaseCompat implements LoaderManager.Lo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportLoaderManager().initLoader(100, null, this);
-        mListView = (ListView) findViewById(R.id.list_view);
+        Map<String, String> map = new LinkedHashMap<>();
+        map.put("book", "fsdaf");
+        LoaderManager.getInstance(this).initLoader(100, null, this);
+        mListView = findViewById(R.id.list_view);
+
     }
 
     @Override
@@ -66,6 +73,7 @@ public class MainActivity extends ActivityBaseCompat implements LoaderManager.Lo
             mAdapter.setUsers(users);
             mAdapter.notifyDataSetChanged();
         }
+
     }
 
     @Override

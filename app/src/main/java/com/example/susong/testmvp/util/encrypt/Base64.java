@@ -9,7 +9,7 @@ package com.example.susong.testmvp.util.encrypt;
  * Base64 工具类
  */
 
-import com.jlhm.personal.utils.StringUtil;
+import com.example.susong.testmvp.util.StringUtil;
 
 import java.math.BigInteger;
 

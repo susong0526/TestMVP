@@ -16,7 +16,7 @@
  */
 package com.example.susong.testmvp.util.encrypt;
 
-import com.jlhm.personal.utils.StringUtil;
+import com.example.susong.testmvp.util.StringUtil;
 
 /**
  * Abstract superclass for Base-N encoders and decoders.
