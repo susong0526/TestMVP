@@ -45,9 +45,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 /**
- * 简化ActivityBase逻辑,新版Activity请继承自该类
+ * 简化ActivityBase逻辑
  * Note: 请不要随意在ActivityBase类中添加逻辑,如需添加
- * 请慎重思考,无法取舍之下甚至可以 @Scott
+ * 请慎重思考,无法取舍之下甚至可以
  */
 public abstract class ActivityBaseCompat extends AppCompatActivity implements AbsToolbar.OnNavigationClickListener, HttpDataApi.OnRequestCallback {
     private LinearLayout mContentView;

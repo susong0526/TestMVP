@@ -1,6 +1,7 @@
 package com.example.susong.testmvp.framework;
 
-public interface Presenter<V extends View> {
+public interface Presenter<V extends BaseView> {
+
     void onViewAttached(V view);
 
     void onViewDetached();

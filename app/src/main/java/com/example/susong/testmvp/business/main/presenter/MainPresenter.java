@@ -4,18 +4,18 @@ package com.example.susong.testmvp.business.main.presenter;
 import com.example.susong.testmvp.business.main.interactor.MainInteractor;
 import com.example.susong.testmvp.business.main.interactor.impl.MainInteractorImpl;
 import com.example.susong.testmvp.business.main.listener.OnGetUserListener;
-import com.example.susong.testmvp.business.main.view.MainView;
+import com.example.susong.testmvp.business.main.view.MainBaseView;
 import com.example.susong.testmvp.entity.po.User;
 import com.example.susong.testmvp.framework.Presenter;
 
 import java.util.List;
 
-public class MainPresenter implements Presenter<MainView>, OnGetUserListener {
+public class MainPresenter implements Presenter<MainBaseView>, OnGetUserListener {
     private MainInteractor interactor = new MainInteractorImpl();
-    private MainView mainView;
+    private MainBaseView mainView;
 
     @Override
-    public void onViewAttached(MainView view) {
+    public void onViewAttached(MainBaseView view) {
     }
 
     @Override
@@ -30,7 +30,7 @@ public class MainPresenter implements Presenter<MainView>, OnGetUserListener {
     }
 
     @Override
-    public void setView(MainView view) {
+    public void setView(MainBaseView view) {
         mainView = view;
     }
 

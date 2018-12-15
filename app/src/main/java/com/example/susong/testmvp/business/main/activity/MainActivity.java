@@ -12,19 +12,16 @@ import com.example.susong.testmvp.R;
 import com.example.susong.testmvp.base.activity.ActivityBaseCompat;
 import com.example.susong.testmvp.business.main.presenter.MainPresenter;
 import com.example.susong.testmvp.business.main.presenter.MainPresenterFactory;
-import com.example.susong.testmvp.business.main.view.MainView;
+import com.example.susong.testmvp.business.main.view.MainBaseView;
 import com.example.susong.testmvp.entity.po.User;
 import com.example.susong.testmvp.framework.PresenterLoader;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Map;
 
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
 
-public class MainActivity extends ActivityBaseCompat implements LoaderManager.LoaderCallbacks<MainPresenter>, MainView {
+public class MainActivity extends ActivityBaseCompat implements LoaderManager.LoaderCallbacks<MainPresenter>, MainBaseView {
     private MainPresenter mMainPresenter;
     private ListView mListView;
     private UserAdapter mAdapter;
@@ -33,8 +30,6 @@ public class MainActivity extends ActivityBaseCompat implements LoaderManager.Lo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Map<String, String> map = new LinkedHashMap<>();
-        map.put("book", "fsdaf");
         LoaderManager.getInstance(this).initLoader(100, null, this);
         mListView = findViewById(R.id.list_view);
 

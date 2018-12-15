@@ -279,7 +279,7 @@ public class ImageSelector extends ActivityBaseCompat implements AdapterView.OnI
         }
     }
 
-    // 构建Convert View
+    // 构建Convert BaseView
     private ImageView buildConvertView() {
         ImageView imageView = new ImageView(this);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

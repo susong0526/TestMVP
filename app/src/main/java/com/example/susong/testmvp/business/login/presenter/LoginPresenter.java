@@ -2,23 +2,22 @@ package com.example.susong.testmvp.business.login.presenter;
 
 import android.os.Handler;
 
-import com.example.susong.testmvp.business.login.view.LoginView;
+import com.example.susong.testmvp.business.login.view.LoginBaseView;
 import com.example.susong.testmvp.database.Repository;
 import com.example.susong.testmvp.business.login.model.UserRepository;
 import com.example.susong.testmvp.business.login.model.UserSpecification;
 import com.example.susong.testmvp.entity.po.User;
 import com.example.susong.testmvp.framework.Presenter;
-import com.example.susong.testmvp.framework.View;
 
 import java.util.List;
 
-public class LoginPresenter implements Presenter<LoginView> {
+public class LoginPresenter implements Presenter<LoginBaseView> {
     private Handler mHandler = new Handler();
     private Repository<User> mUserRepository = new UserRepository();
-    private LoginView mLoginView;
+    private LoginBaseView mLoginView;
 
     @Override
-    public void onViewAttached(LoginView view) {
+    public void onViewAttached(LoginBaseView view) {
 
     }
 
@@ -33,7 +32,7 @@ public class LoginPresenter implements Presenter<LoginView> {
     }
 
     @Override
-    public void setView(LoginView view) {
+    public void setView(LoginBaseView view) {
         mLoginView = view;
     }
 

@@ -11,7 +11,7 @@ import com.example.susong.testmvp.R;
 import com.example.susong.testmvp.base.activity.ActivityBaseCompat;
 import com.example.susong.testmvp.business.login.presenter.LoginPresenter;
 import com.example.susong.testmvp.business.login.presenter.LoginPresneterFactory;
-import com.example.susong.testmvp.business.login.view.LoginView;
+import com.example.susong.testmvp.business.login.view.LoginBaseView;
 import com.example.susong.testmvp.business.main.activity.MainActivity;
 import com.example.susong.testmvp.framework.PresenterLoader;
 
@@ -20,7 +20,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
 
-public class LoginActivity extends ActivityBaseCompat implements LoaderManager.LoaderCallbacks<LoginPresenter>, LoginView {
+public class LoginActivity extends ActivityBaseCompat implements LoaderManager.LoaderCallbacks<LoginPresenter>, LoginBaseView {
 
     private LoginPresenter mPresenter;
     private final int LOADER_ID = 100;

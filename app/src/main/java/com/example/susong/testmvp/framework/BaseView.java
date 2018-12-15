@@ -1,6 +1,6 @@
 package com.example.susong.testmvp.framework;
 
-public interface View {
+public interface BaseView {
     void showProgress();
 
     void hideProgress();
