@@ -6,8 +6,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:name=".base.A"
-        android:theme="@style/AppTheme">
+        android:name=".base.A">
         <activity android:name=".business.main.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
