@@ -26,7 +26,7 @@ android {
         }
     }
 
-    compileSdkVersion 28
+    compileSdkVersion 29
 
     packagingOptions {
         exclude 'META-INF/NOTICE.txt'
@@ -40,7 +40,7 @@ android {
     defaultConfig {
         applicationId "com.example.susong.testmvp"
         minSdkVersion 19
-        targetSdkVersion 28
+        targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         signingConfig signingConfigs.config
@@ -152,5 +152,4 @@ dependencies {
     implementation 'com.mcxiaoke.volley:library:latest.release'
     // EventBus
     implementation 'org.greenrobot:eventbus:latest.release'
-//    api project(':mylibrary')
 }
