@@ -152,5 +152,5 @@ dependencies {
     implementation 'com.mcxiaoke.volley:library:latest.release'
     // EventBus
     implementation 'org.greenrobot:eventbus:latest.release'
-    api project(':mylibrary')
+//    api project(':mylibrary')
 }
